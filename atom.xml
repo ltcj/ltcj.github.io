@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://ltcj.github.io/"/>
+  <updated>2018-12-06T07:45:56.686Z</updated>
+  <id>http://ltcj.github.io/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>my new post</title>
+    <link href="http://ltcj.github.io/2018/12/06/my-new-post/"/>
+    <id>http://ltcj.github.io/2018/12/06/my-new-post/</id>
+    <published>2018-12-06T07:45:56.000Z</published>
+    <updated>2018-12-06T07:45:56.686Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://ltcj.github.io/2018/11/19/hello-world/"/>
+    <id>http://ltcj.github.io/2018/11/19/hello-world/</id>
+    <published>2018-11-19T06:00:55.089Z</published>
+    <updated>2018-11-19T06:00:55.089Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
