@@ -29,6 +29,7 @@ tags:
 
     git push origin hexo
 
+*注意：如果提交更新后存在文件未更新，可先清除缓存后再次重复提交操作：git rm -r --cached "文件夹的名称"*
 
 2.更新hexo静态访问页面
 
