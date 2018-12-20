@@ -2,6 +2,10 @@
 title: idea中tomcat运行中文乱码
 date: 2018-12-18 10:07:47
 tags:
+ - idea
+ - tomcat
+categories:
+ - idea
 ---
 1.进入tomcat配置Run/Debug Configurations中，在VM options中填入-Dfile.encoding=UTF-8
 
