@@ -4,7 +4,7 @@ date: 2018-12-20 15:57:26
 tags: 
  - 虚拟机
  - liunx
-categories： 
+categories: 
  - liunx
 ---
 1.设置虚拟机的网络适配器模式为NAT模式
