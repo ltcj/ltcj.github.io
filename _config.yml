@@ -17,6 +17,7 @@ url: http://ltcj.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+website: https://wzltcj.com/
 
 # Directory
 source_dir: source

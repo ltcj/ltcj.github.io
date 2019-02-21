@@ -1,4 +1,4 @@
-/*全局基础样式*/
+﻿/*全局基础样式*/
 /*小屏幕下(手机类)的样式*/
 @media only screen and (max-width: 601px) {
     .container {
@@ -684,6 +684,8 @@ article .article-content .summary {
     padding-bottom: 2px;
     padding-left: 0;
     margin-bottom: 6px;
+    width: 319.5px;
+    height: 68px;
 }
 
 article .article-content .publish-author {
