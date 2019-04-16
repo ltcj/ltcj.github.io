@@ -15,7 +15,7 @@ categories:
 
 2. 修改sql_mode为非only\_full\_group\_by模式
 
-    set sql_mode=(SELECT REPLAC(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+    set sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 
 3. 修改全局sql_mode
 
