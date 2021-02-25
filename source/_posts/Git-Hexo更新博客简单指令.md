@@ -50,6 +50,10 @@ categories:
     
         hexo d
 
+* 本地启动hexo服务器
+		
+		hexo server
+
 3创建新的hexo资源
 
 * 创建指定名称文章，后缀为.md
