@@ -1,6 +1,6 @@
 ---
 title: Git+Hexo更新博客简单指令
-date: 2018-12-18 13:56:28
+date: 2021-03-01 22:42:28
 tags: 
  - hexo
  - git
@@ -10,6 +10,10 @@ categories:
 ---
 1.更新Git上hexo的配置文件(如果Git上已经创建配置文件分支则跳过前三步操作)
 
+* git克隆项目
+		
+		git clone
+
 * git初始化
 
         git init
@@ -17,6 +21,10 @@ categories:
 * 添加仓库地址
    
         git remote add origin https://github.com/用户名/仓库名.git
+		
+* 同步所有分支到本地
+		
+		git fetch
 
 * 新建分支并切换到新建的分支
 
@@ -33,11 +41,20 @@ categories:
 * 文件推送到hexo分支
 
         git push origin hexo
+		
+* 同步git分支到本地
+		
+		git pull origin hexo
+
 
 *注意：如果提交更新后存在文件未更新，可先清除缓存后再次重复提交操作：git rm -r --cached "文件夹的名称"*
 
 2.更新hexo静态访问页面
 
+* hexo文件初始化(第一次使用时生成hexo文件)
+
+		hexo init
+		
 * 清除上次生成文件
     
         hexo clean
