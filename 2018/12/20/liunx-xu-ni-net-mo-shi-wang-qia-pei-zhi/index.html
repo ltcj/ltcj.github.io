@@ -318,11 +318,11 @@ vi /etc/sysconfig/network-scripts/ifcfg-eth0   进入配置文件
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>1.设置虚拟机的网络适配器模式为NAT模式</p>
-<p><img src="liunx虚拟NET模式网卡配置/1.png" alt="NAT模式"></p>
+<p><img src="1.png" alt="NAT模式"></p>
 <p>2.进入系统，修改网络配置文件</p>
 <pre><code>vi /etc/sysconfig/network-scripts/ifcfg-eth0   进入配置文件
 </code></pre><p>3.删除其中的mac地址并修改ip获取方式BOOTPROTO为dhcp动态获取，是否允许ONBOOT修改为yes</p>
-<p><img src="liunx虚拟NET模式网卡配置/2.png" alt="NAT模式"></p>
+<p><img src="2.png" alt="NAT模式"></p>
 <p>4.删除网卡配置信息 </p>
 <pre><code>rm -rf /etc/udev/rules.d/70-persistent-net.rules
 </code></pre><p>5.重启虚拟机</p>
