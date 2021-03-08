@@ -9,7 +9,7 @@ categories:
 ---
 1.设置虚拟机的网络适配器模式为NAT模式
  
-![NAT模式](liunx虚拟NET模式网卡配置/1.png)
+![NAT模式](1.png)
 
 2.进入系统，修改网络配置文件
 
@@ -17,7 +17,7 @@ categories:
 
 3.删除其中的mac地址并修改ip获取方式BOOTPROTO为dhcp动态获取，是否允许ONBOOT修改为yes
 
-![NAT模式](liunx虚拟NET模式网卡配置/2.png)
+![NAT模式](2.png)
 
 4.删除网卡配置信息 
 
