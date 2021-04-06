@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>老坛沉寂</title>
+  
+  <subtitle>Welcome To My Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://ltcj.github.io/"/>
+  <updated>2021-04-06T16:03:08.414Z</updated>
+  <id>http://ltcj.github.io/</id>
+  
+  <author>
+    <name>ltcj</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git+Hexo更新博客简单指令</title>
+    <link href="http://ltcj.github.io/2021/03/01/git-hexo-geng-xin-bo-ke-jian-dan-zhi-ling/"/>
+    <id>http://ltcj.github.io/2021/03/01/git-hexo-geng-xin-bo-ke-jian-dan-zhi-ling/</id>
+    <published>2021-03-01T14:42:28.000Z</published>
+    <updated>2021-04-06T16:03:08.414Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.更新Git上hexo的配置文件(如果Git上已经创建配置文件分支则跳过前三步操作)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;git克隆项目&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git
+        
+      
+    
+    </summary>
+    
+      <category term="博客" scheme="http://ltcj.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="http://ltcj.github.io/tags/hexo/"/>
+    
+      <category term="git" scheme="http://ltcj.github.io/tags/git/"/>
+    
+      <category term="博客" scheme="http://ltcj.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单点登录cas认证配置走过的坑</title>
+    <link href="http://ltcj.github.io/2019/12/09/dan-dian-deng-lu-cas-ren-zheng-pei-zhi-zou-guo-de-keng/"/>
+    <id>http://ltcj.github.io/2019/12/09/dan-dian-deng-lu-cas-ren-zheng-pei-zhi-zou-guo-de-keng/</id>
+    <published>2019-12-09T07:16:16.000Z</published>
+    <updated>2021-02-28T04:24:09.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;项目框架:spring+shiro+cas&lt;/p&gt;
+&lt;p&gt;1.使用shiro-cas包进行整合&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- realm认证需改为casRealm认证
+
+-
+        
+      
+    
+    </summary>
+    
+      <category term="cas" scheme="http://ltcj.github.io/categories/cas/"/>
+    
+    
+      <category term="单点登录" scheme="http://ltcj.github.io/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    
+      <category term="cas" scheme="http://ltcj.github.io/tags/cas/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单点登录相同顶级域名domain在高版本tomcat下抛异常</title>
+    <link href="http://ltcj.github.io/2019/12/09/dan-dian-deng-lu-xiang-tong-ding-ji-yu-ming-domain-zai-gao-ban-ben-tomcat-xia-pao-yi-chang/"/>
+    <id>http://ltcj.github.io/2019/12/09/dan-dian-deng-lu-xiang-tong-ding-ji-yu-ming-domain-zai-gao-ban-ben-tomcat-xia-pao-yi-chang/</id>
+    <published>2019-12-09T06:51:05.000Z</published>
+    <updated>2021-02-28T04:24:09.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;单点登录项目访问浏览器报错:An invalid domain [.zshs.tv] was specified for this
+        
+      
+    
+    </summary>
+    
+      <category term="tomcat" scheme="http://ltcj.github.io/categories/tomcat/"/>
+    
+    
+      <category term="tomcat" scheme="http://ltcj.github.io/tags/tomcat/"/>
+    
+      <category term="单点登录" scheme="http://ltcj.github.io/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java后台模拟浏览器发送请求</title>
+    <link href="http://ltcj.github.io/2019/08/12/java-hou-tai-mo-ni-liu-lan-qi-fa-song-qing-qiu/"/>
+    <id>http://ltcj.github.io/2019/08/12/java-hou-tai-mo-ni-liu-lan-qi-fa-song-qing-qiu/</id>
+    <published>2019-08-12T02:21:28.000Z</published>
+    <updated>2021-02-28T04:24:09.473Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.URLConnection方式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;导入jar包&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;import org.springframework.web.multipart.MultipartFile;
+import
+        
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://ltcj.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://ltcj.github.io/tags/java/"/>
+    
+      <category term="http请求" scheme="http://ltcj.github.io/tags/http%E8%AF%B7%E6%B1%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>window下mysql的安装</title>
+    <link href="http://ltcj.github.io/2019/06/15/window-xia-mysql-de-an-zhuang/"/>
+    <id>http://ltcj.github.io/2019/06/15/window-xia-mysql-de-an-zhuang/</id>
+    <published>2019-06-15T02:42:49.000Z</published>
+    <updated>2021-02-28T04:24:09.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.官网下载mysql压缩包(以5.7.26版本为例)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://dev.mysql.com/downloads/mysql/5.7.html#downloads
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.解压后进入文件根目录下&lt;/p&gt;
+&lt;p&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://ltcj.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://ltcj.github.io/tags/mysql/"/>
+    
+      <category term="window" scheme="http://ltcj.github.io/tags/window/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>web请求状态码规则</title>
+    <link href="http://ltcj.github.io/2019/01/03/web-qing-qiu-cuo-wu-dai-ma-gui-ze/"/>
+    <id>http://ltcj.github.io/2019/01/03/web-qing-qiu-cuo-wu-dai-ma-gui-ze/</id>
+    <published>2019-01-03T02:30:27.000Z</published>
+    <updated>2021-02-28T04:24:09.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;一些常见的状态码为：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;200 - 服务器成功返回网页&lt;/p&gt;
+&lt;p&gt;404 - 请求的网页不存在&lt;/p&gt;
+&lt;p&gt;503 -
+        
+      
+    
+    </summary>
+    
+      <category term="请求状态码" scheme="http://ltcj.github.io/categories/%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+    
+    
+      <category term="web" scheme="http://ltcj.github.io/tags/web/"/>
+    
+      <category term="状态码" scheme="http://ltcj.github.io/tags/%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql中groupconcat查询字段限制解决方案</title>
+    <link href="http://ltcj.github.io/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/"/>
+    <id>http://ltcj.github.io/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/</id>
+    <published>2019-01-03T01:29:19.000Z</published>
+    <updated>2021-02-28T04:24:09.474Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;mysql中使用group_concat时如果查询字段过长会被限制查询结果长度&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;会话窗口一次性方案&lt;/p&gt;
+&lt;p&gt; SET GLOBAL group_concat_max_len=1024000;  //需具有全局修改权限&lt;/p&gt;
+&lt;p&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://ltcj.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://ltcj.github.io/tags/mysql/"/>
+    
+      <category term="group_concat" scheme="http://ltcj.github.io/tags/group-concat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql高版本groupby问题</title>
+    <link href="http://ltcj.github.io/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/"/>
+    <id>http://ltcj.github.io/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/</id>
+    <published>2019-01-03T01:29:19.000Z</published>
+    <updated>2021-02-28T04:24:09.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在mysql高版本中查询非groupby聚合列会出异常，此时需要修改mysql的sql_mode&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;查询全局sql_mode&lt;/p&gt;
+&lt;p&gt; select
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://ltcj.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://ltcj.github.io/tags/mysql/"/>
+    
+      <category term="groupby" scheme="http://ltcj.github.io/tags/groupby/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>正则匹配规则</title>
+    <link href="http://ltcj.github.io/2018/12/29/zheng-ze-pi-pei-gui-ze/"/>
+    <id>http://ltcj.github.io/2018/12/29/zheng-ze-pi-pei-gui-ze/</id>
+    <published>2018-12-29T03:20:16.000Z</published>
+    <updated>2021-02-28T04:24:09.476Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.字符串后加：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/s+   可以匹配多个空格
+
+/d+   匹配一个或多个数字
+
+/.    匹配&amp;quot;.&amp;quot;
+
+\b    匹配字边界，即字符串与空格之间的位置
+
+\B   
+        
+      
+    
+    </summary>
+    
+      <category term="正则匹配" scheme="http://ltcj.github.io/categories/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/"/>
+    
+    
+      <category term="java" scheme="http://ltcj.github.io/tags/java/"/>
+    
+      <category term="正则匹配" scheme="http://ltcj.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>自定义注解标识</title>
+    <link href="http://ltcj.github.io/2018/12/29/zi-ding-yi-zhu-jie-biao-shi/"/>
+    <id>http://ltcj.github.io/2018/12/29/zi-ding-yi-zhu-jie-biao-shi/</id>
+    <published>2018-12-29T01:54:29.000Z</published>
+    <updated>2021-02-28T04:24:09.476Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.@Retention&lt;/p&gt;
+&lt;p&gt;  (1) RetentionPolicy.SOURCE：注解只保留在源文件，当Java文件编译成class文件的时候，注解被遗弃；&lt;/p&gt;
+&lt;p&gt;  (2)
+        
+      
+    
+    </summary>
+    
+      <category term="注解" scheme="http://ltcj.github.io/categories/%E6%B3%A8%E8%A7%A3/"/>
+    
+    
+      <category term="注解" scheme="http://ltcj.github.io/tags/%E6%B3%A8%E8%A7%A3/"/>
+    
+      <category term="自定义" scheme="http://ltcj.github.io/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>liunx虚拟NET模式网卡配置</title>
+    <link href="http://ltcj.github.io/2018/12/20/liunx-xu-ni-net-mo-shi-wang-qia-pei-zhi/"/>
+    <id>http://ltcj.github.io/2018/12/20/liunx-xu-ni-net-mo-shi-wang-qia-pei-zhi/</id>
+    <published>2018-12-20T07:57:26.000Z</published>
+    <updated>2021-04-06T16:03:08.415Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.设置虚拟机的网络适配器模式为NAT模式&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2018/12/20/liunx-xu-ni-net-mo-shi-wang-qia-pei-zhi/1.png&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="liunx" scheme="http://ltcj.github.io/categories/liunx/"/>
+    
+    
+      <category term="虚拟机" scheme="http://ltcj.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+      <category term="liunx" scheme="http://ltcj.github.io/tags/liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>idea中tomcat运行中文乱码</title>
+    <link href="http://ltcj.github.io/2018/12/18/idea-zhong-tomcat-yun-xing-zhong-wen-luan-ma/"/>
+    <id>http://ltcj.github.io/2018/12/18/idea-zhong-tomcat-yun-xing-zhong-wen-luan-ma/</id>
+    <published>2018-12-18T02:07:47.000Z</published>
+    <updated>2021-04-06T16:03:08.414Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.进入tomcat配置Run/Debug Configurations中，在VM options中填入-Dfile.encoding=UTF-8&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="idea" scheme="http://ltcj.github.io/categories/idea/"/>
+    
+    
+      <category term="idea" scheme="http://ltcj.github.io/tags/idea/"/>
+    
+      <category term="tomcat" scheme="http://ltcj.github.io/tags/tomcat/"/>
+    
+  </entry>
+  
+</feed>

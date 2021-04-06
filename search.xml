@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>Git+Hexo更新博客简单指令</title>
+      <link href="/2021/03/01/git-hexo-geng-xin-bo-ke-jian-dan-zhi-ling/"/>
+      <url>/2021/03/01/git-hexo-geng-xin-bo-ke-jian-dan-zhi-ling/</url>
+      
+        <content type="html"><![CDATA[<p>1.更新Git上hexo的配置文件(如果Git上已经创建配置文件分支则跳过前三步操作)</p><ul><li><p>git克隆项目</p><pre><code>git clone</code></pre></li><li><p>git初始化</p><pre><code>git init</code></pre></li><li><p>添加仓库地址</p><pre><code>git remote add origin https://github.com/用户名/仓库名.git</code></pre></li><li><p>同步所有分支到本地</p><pre><code>git fetch</code></pre></li><li><p>新建分支并切换到新建的分支</p><pre><code>git checkout -b 分支名</code></pre></li><li><p>添加所有本地文件到git</p><pre><code>git add .</code></pre></li><li><p>git提交</p><pre><code>git commit -m &quot;注释信息&quot;</code></pre></li><li><p>文件推送到hexo分支</p><pre><code>git push origin hexo</code></pre></li><li><p>同步git分支到本地</p><pre><code>git pull origin hexo</code></pre></li></ul><p><em>注意：如果提交更新后存在文件未更新，可先清除缓存后再次重复提交操作：git rm -r –cached “文件夹的名称”</em></p><p>2.更新hexo静态访问页面</p><ul><li><p>hexo文件初始化(第一次使用时生成hexo文件)</p><pre><code>hexo init</code></pre></li><li><p>清除上次生成文件</p><pre><code>hexo clean</code></pre></li><li><p>生成新文件</p><pre><code>hexo g</code></pre></li><li><p>部署新的文件</p><pre><code>hexo d</code></pre></li><li><p>本地启动hexo服务器</p><pre><code>hexo server</code></pre></li></ul><p>3创建新的hexo资源</p><ul><li><p>创建指定名称文章，后缀为.md</p><pre><code>hexo new &quot;postName&quot;</code></pre></li><li><p>创建一个新的页签文件夹，里面包含一个index.md</p><pre><code>hexo new page &quot;页签名称&quot;</code></pre></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> git </tag>
+            
+            <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>单点登录cas认证配置走过的坑</title>
+      <link href="/2019/12/09/dan-dian-deng-lu-cas-ren-zheng-pei-zhi-zou-guo-de-keng/"/>
+      <url>/2019/12/09/dan-dian-deng-lu-cas-ren-zheng-pei-zhi-zou-guo-de-keng/</url>
+      
+        <content type="html"><![CDATA[<p>项目框架:spring+shiro+cas</p><p>1.使用shiro-cas包进行整合</p><pre><code>- realm认证需改为casRealm认证- CredentialsMatcher密码匹配器需使用自带密码匹配器，如果需要加密则自行添加相应密码匹配器，并对cas认证进行修改- shiroFilter配置中需添加casFilter到shiroFilter的filters过滤链中，切filterMap拦截配置中需加上对所有路径的casFilter拦截</code></pre><p><em>注意：使用此包认证token已变更为casToken，验证需要ticket凭证，不能通过shiro进行本地登录</em></p><p>2.使用cas-client包进行整合</p><pre><code>- cas 和 shiro作为两个单独拦截器进行登录，通过访问域名的不同进行拦截登录- 先进行cas拦截，并重写AuthenticationFilter，在doFilter里对域名进行相应判断，cas登录后在进行shiro的登录，保证subject里有shiro的凭证</code></pre><p><em>注意:需重写shiro的sessionId保存到浏览器中的cookie名称，保证和cas使用的jsessionId不重复，否则在使用时会导致shiro和cas之间循环重定向</em></p><p><strong><em>参考链接：<a href="https://blog.csdn.net/changliangwl/article/details/51504522" target="_blank" rel="noopener">https://blog.csdn.net/changliangwl/article/details/51504522</a></em></strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> cas </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 单点登录 </tag>
+            
+            <tag> cas </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>单点登录相同顶级域名domain在高版本tomcat下抛异常</title>
+      <link href="/2019/12/09/dan-dian-deng-lu-xiang-tong-ding-ji-yu-ming-domain-zai-gao-ban-ben-tomcat-xia-pao-yi-chang/"/>
+      <url>/2019/12/09/dan-dian-deng-lu-xiang-tong-ding-ji-yu-ming-domain-zai-gao-ban-ben-tomcat-xia-pao-yi-chang/</url>
+      
+        <content type="html"><![CDATA[<p>单点登录项目访问浏览器报错:An invalid domain [.zshs.tv] was specified for this cookie</p><p>原因：高版本tomcat(8.5)使用Rfc6265CookieProcessor生成cookie头，低版本使用LegacyCookieProcessor</p><p>解决方案：</p><p>一 .普通web项目</p><pre><code>1.进入tomcat文件目录2.Edit the Tomcat/conf/content.xml3.Add the statement in betweeen the &lt;context&gt; and &lt;/context&gt; tags:&lt;CookieProcessor className=&quot;org.apache.tomcat.util.http.LegacyCookieProcessor&quot; /&gt; </code></pre><p>二 .springboot项目</p><pre><code>@Beanpublic WebServerFactoryCustomizer&lt;TomcatServletWebServerFactory&gt; cookieProcessorCustomizer() {return (factory) -&gt; factory.addContextCustomizers(        (context) -&gt; context.setCookieProcessor(new LegacyCookieProcessor()));}</code></pre><p>备注：</p><pre><code>Rfc6265CookieProcessor 使用的domain规则如下：1、必须是1-9、a-z、A-Z、. 、- （注意是-不是_）这几个字符组成 2、必须是数字或字母开头 （所以以前的cookie的设置为.i5a6.com 的机制要改为 i5a6.com 即可） 3、必须是数字或字母结尾</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> tomcat </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tomcat </tag>
+            
+            <tag> 单点登录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>java后台模拟浏览器发送请求</title>
+      <link href="/2019/08/12/java-hou-tai-mo-ni-liu-lan-qi-fa-song-qing-qiu/"/>
+      <url>/2019/08/12/java-hou-tai-mo-ni-liu-lan-qi-fa-song-qing-qiu/</url>
+      
+        <content type="html"><![CDATA[<p>1.URLConnection方式</p><blockquote><p>导入jar包</p></blockquote><pre><code>import org.springframework.web.multipart.MultipartFile;import java.io.*;import java.net.HttpURLConnection;import java.net.URL;import java.net.URLConnection;import java.security.PrivateKey;import java.security.PublicKey;import java.util.*;</code></pre><blockquote><p>请求工具类</p></blockquote><pre><code>public class HttpUtil {private final static String BOUNDARY = UUID.randomUUID().toString();// 边界标识private final static String PREFIX = &quot;--&quot;;// 必须存在private final static String LINE_END = &quot;\r\n&quot;;/** * 向指定URL发送GET方法的请求 * * @param url   发送请求的URL * @param param 请求参数，请求参数应该是 name1=value1&amp;name2=value2 的形式。 * @return URL 所代表远程资源的响应结果 */public static String sendGet(String url, String param) {    String result = &quot;&quot;;    BufferedReader in = null;    try {        String urlNameString = url + &quot;?&quot; + param;        URL realUrl = new URL(urlNameString);        // 打开和URL之间的连接        URLConnection connection = realUrl.openConnection();        // 设置通用的请求属性        connection.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);        connection.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);        connection.setRequestProperty(&quot;user-agent&quot;,                &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)&quot;);        /*设置超时时间*/        connection.setConnectTimeout(0);        connection.setReadTimeout(0);        // 建立实际的连接        connection.connect();        // 获取所有响应头字段        Map&lt;String, List&lt;String&gt;&gt; map = connection.getHeaderFields();        // 遍历所有的响应头字段        for (String key : map.keySet()) {            System.out.println(key + &quot;---&gt;&quot; + map.get(key));        }        // 定义 BufferedReader输入流来读取URL的响应        in = new BufferedReader(new InputStreamReader(                connection.getInputStream()));        String line;        while ((line = in.readLine()) != null) {            result += line;        }    } catch (Exception e) {        System.out.println(&quot;发送GET请求出现异常！&quot; + e);        e.printStackTrace();    }    // 使用finally块来关闭输入流    finally {        try {            if (in != null) {                in.close();            }        } catch (Exception e2) {            e2.printStackTrace();        }    }    return result;}/** * 向指定 URL 发送POST方法的请求 * * @param url   发送请求的 URL * @param param 请求参数，请求参数应该是 name1=value1&amp;name2=value2 的形式。 * @return 所代表远程资源的响应结果 */public static String sendPost(String url, String param) {    PrintWriter out = null;    BufferedReader in = null;    String result = &quot;&quot;;    try {        URL realUrl = new URL(url);        // 打开和URL之间的连接        HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();        // 设置通用的请求属性        conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);        conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);        conn.setRequestProperty(&quot;user-agent&quot;,                &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)&quot;);        // 发送POST请求必须设置如下两行        conn.setDoOutput(true);        conn.setDoInput(true);        /*设置超时时间*/        conn.setConnectTimeout(0);        conn.setReadTimeout(0);        // 获取URLConnection对象对应的输出流        out = new PrintWriter(conn.getOutputStream());        // 发送请求参数        out.print(param);        // flush输出流的缓冲        out.flush();        int responseCode = conn.getResponseCode();        System.out.println(&quot;返回状态&quot; + responseCode);        // 定义BufferedReader输入流来读取URL的响应        in = new BufferedReader(                new InputStreamReader(conn.getInputStream()));        String line;        while ((line = in.readLine()) != null) {            result += line;        }    } catch (Exception e) {        System.out.println(&quot;发送 POST 请求出现异常！&quot; + e);        e.printStackTrace();    }    //使用finally块来关闭输出流、输入流    finally {        try {            if (out != null) {                out.close();            }            if (in != null) {                in.close();            }        } catch (IOException ex) {            ex.printStackTrace();        }    }    return result;}/** * 向指定 URL 发送POST方法的请求(带文件) * * @param url   发送请求的 URL * @param paramMap参数map requestFile 文件参数Map。 * @return 所代表远程资源的响应结果 */public static String sendPostFile(String url, Map&lt;String, String&gt; paramMap, Map&lt;String, MultipartFile&gt; requestFile) {    DataOutputStream out = null;    BufferedReader in = null;    String result = &quot;&quot;;    try {        URL realUrl = new URL(url);        // 打开和URL之间的连接        HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();        // 设置通用的请求属性        conn.setRequestProperty(&quot;accept&quot;, &quot;*/*&quot;);        conn.setRequestProperty(&quot;connection&quot;, &quot;Keep-Alive&quot;);        conn.setRequestProperty(&quot;user-agent&quot;,                &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)&quot;);        conn.setRequestProperty(&quot;Content-Type&quot;, &quot;multipart/form-data;boundary=&quot; + BOUNDARY);        // 发送POST请求必须设置如下两行        conn.setDoOutput(true);        conn.setDoInput(true);        /*设置超时时间*/        conn.setConnectTimeout(0);        conn.setReadTimeout(0);        // 获取URLConnection对象对应的输出流        out = new DataOutputStream(conn.getOutputStream());        // 发送请求参数        writeParams(paramMap, out);        // flush输出流的缓冲        out.flush();        writeFile(requestFile, out);        int responseCode = conn.getResponseCode();        System.out.println(&quot;返回状态&quot; + responseCode);        // 定义BufferedReader输入流来读取URL的响应        in = new BufferedReader(                new InputStreamReader(conn.getInputStream()));        String line;        while ((line = in.readLine()) != null) {            result += line;        }    } catch (Exception e) {        System.out.println(&quot;发送 POST 请求出现异常！&quot; + e);        e.printStackTrace();    }    //使用finally块来关闭输出流、输入流    finally {        try {            if (out != null) {                out.close();            }            if (in != null) {                in.close();            }        } catch (IOException ex) {            ex.printStackTrace();        }    }    return result;}/** * 对post参数进行编码处理并写入数据流中 * * @throws Exception * @throws IOException */private static void writeParams(Map&lt;String, String&gt; requestText,                                OutputStream os) throws Exception {    try {        String msg = &quot;请求参数部分:\n&quot;;        if (requestText == null || requestText.isEmpty()) {            msg += &quot;空&quot;;        } else {            StringBuilder requestParams = new StringBuilder();            Set&lt;Map.Entry&lt;String, String&gt;&gt; set = requestText.entrySet();            Iterator&lt;Map.Entry&lt;String, String&gt;&gt; it = set.iterator();            while (it.hasNext()) {                Map.Entry&lt;String, String&gt; entry = it.next();                requestParams.append(PREFIX).append(BOUNDARY).append(LINE_END);                requestParams.append(&quot;Content-Disposition: form-data; name=\&quot;&quot;)                        .append(entry.getKey()).append(&quot;\&quot;&quot;).append(LINE_END);                requestParams.append(&quot;Content-Type: text/plain; charset=utf-8&quot;)                        .append(LINE_END);                requestParams.append(&quot;Content-Transfer-Encoding: 8bit&quot;).append(                        LINE_END);                requestParams.append(LINE_END);// 参数头设置完以后需要两个换行，然后才是参数内容                requestParams.append(entry.getValue());                requestParams.append(LINE_END);            }            os.write(requestParams.toString().getBytes());            os.flush();            msg += requestParams.toString();        }        System.out.println(msg);    } catch (Exception e) {        e.printStackTrace();        throw new Exception(e);    }}/** * 对post上传的文件进行编码处理并写入数据流中 * * @throws IOException */private static void writeFile(Map&lt;String, MultipartFile&gt; requestFile,                              DataOutputStream out) throws Exception {    //文件上传    StringBuilder fileSb = new StringBuilder();    for (Map.Entry&lt;String, MultipartFile&gt; fileEntry : requestFile.entrySet()) {        fileSb.append(PREFIX)                .append(BOUNDARY)                .append(LINE_END)                /**                 * 这里重点注意： name里面的值为服务端需要的key 只有这个key 才可以得到对应的文件                 * filename是文件的名字，包含后缀名的 比如:abc.png                 */                .append(&quot;Content-Disposition: form-data; name=\&quot;file\&quot;; filename=\&quot;&quot;                        + fileEntry.getKey() + &quot;\&quot;&quot; + LINE_END)                .append(&quot;Content-Type: image/jpg&quot; + LINE_END) //此处的ContentType不同于 请求头 中Content-Type                .append(&quot;Content-Transfer-Encoding: 8bit&quot; + LINE_END)                .append(LINE_END);// 参数头设置完以后需要两个换行，然后才是参数内容        out.writeBytes(fileSb.toString());        out.flush();        InputStream is = fileEntry.getValue().getInputStream();        byte[] buffer = new byte[1024];        int len = 0;        while ((len = is.read(buffer)) != -1) {            out.write(buffer, 0, len);        }        is.close();        out.writeBytes(LINE_END);    }    //请求结束标志    out.writeBytes(PREFIX + BOUNDARY + PREFIX + LINE_END);    out.flush();}public static void main(String[] args) {    String s = sendPost(&quot;&quot;, &quot;&quot;);    System.out.println(s);}}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> http请求 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>window下mysql的安装</title>
+      <link href="/2019/06/15/window-xia-mysql-de-an-zhuang/"/>
+      <url>/2019/06/15/window-xia-mysql-de-an-zhuang/</url>
+      
+        <content type="html"><![CDATA[<p>1.官网下载mysql压缩包(以5.7.26版本为例)</p><pre><code>https://dev.mysql.com/downloads/mysql/5.7.html#downloads</code></pre><p>2.解压后进入文件根目录下</p><p>修改my_default.ini为my.ini，如果没有创建my.ini</p><p>备注：my.ini中内容: utf8mb4包含utf8及部分移动端的表情数据，basedir为mysql安装目录，datadir为mysql数据目录，该目录下数据必须为空否则安装会失败</p><pre><code>[client]port=3306default-character-set = utf8mb4[mysql]default-character-set = utf8mb4[mysqld]basedir = D:\mysql\mysql5.7.26datadir = D:\mysql\mysql5.7.26\dataport = 3306character-set-client-handshake = FALSEcharacter-set-server = utf8mb4collation-server = utf8mb4_unicode_ciinit_connect = &apos;SET NAMES utf8mb4&apos;sql_mode = NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</code></pre><p>3.配置mysql的系统环境变量</p><p>进入我的电脑-&gt;高级系统设置-&gt;添加系统变量，变量名：MYSQL_HOME 值：mysql安装目录</p><pre><code>编辑Path环境变量，添加 %MYSQL_HOME%\bin</code></pre><p>4.使用cmd进入当前目录下的命令控制台</p><pre><code>执行mysqld --initialize --user=mysql --console</code></pre><p>自动生成初始化数据库，执行完毕会生成root用户和临时密码(root@localhost后跟的随机字符串就是临时密码)<br>注意:如果第一次数据库初始化失败，第二次进行初始化的时候需要清空data中的文件，否则将不能进行初始化。</p><p>5.安装服务(MySQL为服务名称，文件路径为上文所创建ini配置文件)</p><pre><code>输入命令 mysqld install MySQL --defaults-file=&quot;D:\MySQL\mysql-5.7.25-winx64\my.ini</code></pre><p>6.启动与关闭</p><pre><code>mysql启动:net start MySQLmysql关闭:net stop MySQL</code></pre><p>7.进入mysql</p><pre><code>mysql -u root -p 使用root用户连接mysql输入密码后进入</code></pre><p>第一次进入需要修改root用户密码才能使用sql语句进行调用<br>修改密码指令：set password = password(‘新密码’);<br>执行成后使用exit退出，再次登录即可使用新密码</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> window </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>web请求状态码规则</title>
+      <link href="/2019/01/03/web-qing-qiu-cuo-wu-dai-ma-gui-ze/"/>
+      <url>/2019/01/03/web-qing-qiu-cuo-wu-dai-ma-gui-ze/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>一些常见的状态码为：</p></blockquote><p>200 - 服务器成功返回网页</p><p>404 - 请求的网页不存在</p><p>503 - 服务不可用</p><p>详细分解：</p><blockquote><p>1xx（临时响应）</p></blockquote><p>表示临时响应并需要请求者继续执行操作的状态代码。</p><p>说明</p><p>100 （继续） </p><p>请求者应当继续提出请求。服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。</p><p>101 （切换协议） </p><p>请求者已要求服务器切换协议，服务器已确认并准备切换。</p><blockquote><p>2xx （成功）</p></blockquote><p>表示成功处理了请求的状态代码。</p><p>说明</p><p>200 （成功） 服务器已成功处理了请求。通常，这表示服务器提供了请求的网页。</p><p>201 （已创建） 请求成功并且服务器创建了新的资源。</p><p>202 （已接受） 服务器已接受请求，但尚未处理。</p><p>203 （非授权信息） 服务器已成功处理了请求，但返回的信息可能来自另一来源。</p><p>204 （无内容） 服务器成功处理了请求，但没有返回任何内容。</p><p>205 （重置内容） 服务器成功处理了请求，但没有返回任何内容。</p><p>206 （部分内容） 服务器成功处理了部分 GET 请求。</p><blockquote><p>3xx （重定向）</p></blockquote><p>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</p><p>说明</p><p>300 （多种选择） 针对请求，服务器可执行多种操作。服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</p><p>301 （永久移动） 请求的网页已永久移动到新位置。服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。</p><p>302 （临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p><p>303 （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。</p><p>304 （未修改） 自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。</p><p>305 （使用代理） 请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。</p><p>307 （临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p><blockquote><p>4xx（请求错误）<br>这些状态代码表示请求可能出错，妨碍了服务器的处理。</p></blockquote><p>说明</p><p>400 （错误请求） 服务器不理解请求的语法。</p><p>401 （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</p><p>403 （禁止） 服务器拒绝请求。</p><p>404 （未找到） 服务器找不到请求的网页。</p><p>405 （方法禁用） 禁用请求中指定的方法。</p><p>406 （不接受） 无法使用请求的内容特性响应请求的网页。</p><p>407 （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。</p><p>408 （请求超时） 服务器等候请求时发生超时。</p><p>409 （冲突） 服务器在完成请求时发生冲突。服务器必须在响应中包含有关冲突的信息。</p><p>410 （已删除） 如果请求的资源已永久删除，服务器就会返回此响应。</p><p>411 （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。</p><p>412 （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。</p><p>413 （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</p><p>414 （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。</p><p>415 （不支持的媒体类型） 请求的格式不受请求页面的支持。</p><p>416 （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。</p><p>417 （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p><blockquote><p>5xx（服务器错误）</p></blockquote><p>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</p><p>说明</p><p>500 （服务器内部错误） 服务器遇到错误，无法完成请求。</p><p>501 （尚未实施） 服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。</p><p>502 （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。</p><p>503 （服务不可用） 服务器目前无法使用（由于超载或停机维护）。通常，这只是暂时状态。</p><p>504 （网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。</p><p>505 （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p><blockquote><p>常用代码说明</p></blockquote><p>200 - 服务器成功返回网页，客户端请求已成功。 </p><p>302 - 对象临时移动。服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p><p>304 - 属于重定向。自上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。</p><p>401 - 未授权。请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</p><p>404 - 未找到。服务器找不到请求的网页。</p><p>2xx - 成功。表示服务器成功地接受了客户端请求。</p><p>3xx - 重定向。表示要完成请求，需要进一步操作。客户端浏览器必须采取更多操作来实现请求。例如，浏览器可能不得不请求服务器上的不同的页面，或通过代理服务器重复该请求。</p><p>4xx - 请求错误。这些状态代码表示请求可能出错，妨碍了服务器的处理。</p><p>5xx - 服务器错误。表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 请求状态码 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+            <tag> 状态码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>mysql中groupconcat查询字段限制解决方案</title>
+      <link href="/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/"/>
+      <url>/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/</url>
+      
+        <content type="html"><![CDATA[<p>mysql中使用group_concat时如果查询字段过长会被限制查询结果长度</p><ol><li><p>会话窗口一次性方案</p><p> SET GLOBAL group_concat_max_len=1024000;  //需具有全局修改权限</p><p> SET SESSION group_concat_max_len=1024000;</p><p> 备注：不需重启mysql服务</p></li><li><p>彻底修改</p><p> 找到MYSQL的配置文件my.ini或者my.cnf,在里面添加以下信息</p><p> group_concat_max_len = -1  # -1为最大值或填入你要的最大长度或者自己设置group_concat_max_len = 1024000</p><p> 备注:需重启mysql服务</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> group_concat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>mysql高版本groupby问题</title>
+      <link href="/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/"/>
+      <url>/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<p>在mysql高版本中查询非groupby聚合列会出异常，此时需要修改mysql的sql_mode</p><ol><li><p>查询全局sql_mode</p><p> select @@global.sql_mode;</p></li><li><p>修改sql_mode为非only_full_group_by模式(对当前会话、已存在数据库有效)</p><p> set sql_mode=(SELECT REPLACE(@@sql_mode,’ONLY_FULL_GROUP_BY’,’’));</p></li><li><p>修改全局sql_mode(对当前会话、新建数据库有效)</p><p> set @@global.sql_mode =’STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION’;</p><p> 注意：执行不成功可能由于复制时中英文单引号错乱导致</p></li><li><p>修改mysql的my.ini,添加以上配置(liunx为my.cnf,重启数据库后永久生效)</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> groupby </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>正则匹配规则</title>
+      <link href="/2018/12/29/zheng-ze-pi-pei-gui-ze/"/>
+      <url>/2018/12/29/zheng-ze-pi-pei-gui-ze/</url>
+      
+        <content type="html"><![CDATA[<p>1.字符串后加：</p><pre><code>/s+   可以匹配多个空格/d+   匹配一个或多个数字/.    匹配&quot;.&quot;\b    匹配字边界，即字符串与空格之间的位置\B    匹配非字边界</code></pre><p>2.字符串定义：</p><pre><code>^ 定义字符串以什么开始()?设置括号内的选项是可选的$  定义字符串以什么结束*  零次或多次匹配前面的字符或子表达式  {0,}+  一次或多次匹配前面的字符或子表达式  {1,}{n}   n非负整数，正好匹配n次{n,}  n非负整数，至少匹配n次{n,m} n非负整数，至少匹配n次，最多匹配m次x|y   匹配x或y[xyz] 匹配包含的任一字符[^xyz] 匹配未包含的任何字符[a-z]  匹配a到z范围内的任何字符[^a-z] 匹配不在指定范围内的任何字符\d    数字字符匹配，等效于[0-9]\D    非数字字符匹配\f    换页符匹配，等效于\x0d和\cL\n    换行符匹配，等效于\x0a和\cJ\r    回车符匹配，等效于\x0a和\cM\s    匹配任何空白字符，等效[\f\n\r\t\v]\S    匹配任何非空白字符\t    制表符匹配，等效于\x09和\cl\v    垂直制表符匹配，与\x0b和\cK\w    匹配任何字类字符，包括下划线，[A-Za-z0-9_]\W    与任何非单词字符匹配</code></pre><p>3.字符串穿插：</p><pre><code>.*子字符串.* 查找是否包含了子字符串</code></pre><p>4.特殊含义：</p><pre><code>\\     插入一个正则表达式的反斜线，其后字符具有特殊的意义\      将下一字符标记为特殊字符？     当紧随任何其他限定符，标识非贪心的，o+匹配所有o,o+?匹配单个o.      匹配除&quot;/r/n&quot;之外的任何单个字符</code></pre><p>常用案例：</p><pre><code>&quot;^\\d+$&quot;　　　　　　　　　　//非负整数（正整数 + 0） 　　&quot;^[0-9]*[1-9][0-9]*$&quot;　　　 //正整数 　　&quot;^((-\\d+)|(0+))$&quot;　　　　    //非正整数（负整数 + 0） 　　&quot;^-[0-9]*[1-9][0-9]*$&quot;　　  //负整数 　　&quot;^-?\\d+$&quot;　　　　　　　　   //整数 　　&quot;^\\d+(&quot;　　　　　　　　　　 //非负浮点数（正浮点数 + 0） 　　&quot;^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$&quot;　　　　//正浮点数 　　&quot;^((-\\d+(&quot;　　　　　　　　   //非正浮点数（负浮点数 + 0） 　　&quot;^(-(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*)))$&quot;　　  //负浮点数 　　&quot;^(-?\\d+)(&quot;　　　　　　　　 //浮点数</code></pre><p>正则匹配主要包括三个类：</p><p>1.Pattern 类：</p><p>pattern 对象是一个正则表达式的编译表示。Pattern 类没有公共构造方法。要创建一个 Pattern 对象，你必须首先调用其公共静态编译方法，它返回一个 Pattern 对象。该方法接受一个正则表达式作为它的第一个参数。</p><p>2.Matcher 类：</p><p>Matcher 对象是对输入字符串进行解释和匹配操作的引擎。与Pattern 类一样，Matcher 也没有公共构造方法。你需要调用 Pattern 对象的 matcher 方法来获得一个 Matcher 对象。</p><p>PatternSyntaxException：</p><p>PatternSyntaxException 是一个非强制异常类，它表示一个正则表达式模式中的语法错误。</p><p>例：</p><pre><code>1.String pattern = &quot;.*runoob.*&quot;;boolean isMatch = Pattern.matches(pattern, content);2.String pattern = &quot;(\\D*)(\\d+)(.*)&quot;;// 创建 Pattern 对象Pattern r = Pattern.compile(pattern);// 现在创建 matcher 对象Matcher m = r.matcher(line);m.group(0)  ---获取整个表达式m.group(1)  ---获取第一个组表达式(共三组)m.start()  ---匹配的初始索引m.end()    ---匹配的结束索引m.lookingAt()  ---要求整个序列都匹配m.matches()   ---不要求整个序列匹配，但需要从第一个字符匹配m.replaceFrist()   ---替换首次匹配m.replaceAll()  ---替换所有匹配</code></pre><p>捕获组：（规则:把多个字符当一个单独单元来进行处理，通过父括号类的字符分组来创建捕获组通过从左至右计算其开括号来编号）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 正则匹配 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 正则匹配 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>自定义注解标识</title>
+      <link href="/2018/12/29/zi-ding-yi-zhu-jie-biao-shi/"/>
+      <url>/2018/12/29/zi-ding-yi-zhu-jie-biao-shi/</url>
+      
+        <content type="html"><![CDATA[<p>1.@Retention</p><p>  (1) RetentionPolicy.SOURCE：注解只保留在源文件，当Java文件编译成class文件的时候，注解被遗弃；</p><p>  (2) RetentionPolicy.CLASS：注解被保留到class文件，但jvm加载class文件时候被遗弃，这是默认的生命周期；</p><p>  (3) RetentionPolicy.RUNTIME：注解不仅被保存到class文件中，jvm加载class文件之后，仍然存在；</p><p>这3个生命周期分别对应于：Java源文件(.java文件) —&gt; .class文件 —&gt; 内存中的字节码。</p><p>2.@IntDef 枚举类型</p><p>  (1) @Target</p><p>  (2) @Target(ElementType.TYPE) //接口、类、枚举、注解</p><p>  (3) @Target(ElementType.FIELD) //字段、枚举的常量</p><p>  (4) @Target(ElementType.METHOD) //方法</p><p>  (5) @Target(ElementType.PARAMETER) //方法参数</p><p>  (6) @Target(ElementType.CONSTRUCTOR) //构造函数</p><p>  (7) @Target(ElementType.LOCAL_VARIABLE)//局部变量</p><p>  (8) @Target(ElementType.ANNOTATION_TYPE)//注解</p><p>  (9) @Target(ElementType.package) ///包 这里可以使用多个，比如:@Target({ElementType.TYPE,ElementType.METHOD})</p><p>3.@Documented</p><p>Documented 注解表明这个注解应该被 javadoc工具记录. 默认情况下,javadoc是不包括注解的.<br>但如果声明注解时指定了 @Documented,则它会被 javadoc 之类的工具处理, 所以注解类型信息也会被包括在生成的文档中.</p><p>4.@Inherited</p><p>  (1).@Inherited定义在类级别上，子类时可以继承的</p><p>  (2).@Inherited定义在方法级别上，子类的方法如果复写的那么就不能继承。</p><p>例:</p><pre><code>@Target({ElementType.PARAMETER, ElementType.METHOD}) //方法或方法参数上 @Retention(RetentionPolicy.RUNTIME)  //运行时注解@Documented  public  @interface SystemLog {  String module()  default &quot;&quot;;  //模块String methods()  default &quot;&quot;;   //方法}  </code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 注解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 注解 </tag>
+            
+            <tag> 自定义 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>liunx虚拟NET模式网卡配置</title>
+      <link href="/2018/12/20/liunx-xu-ni-net-mo-shi-wang-qia-pei-zhi/"/>
+      <url>/2018/12/20/liunx-xu-ni-net-mo-shi-wang-qia-pei-zhi/</url>
+      
+        <content type="html"><![CDATA[<p>1.设置虚拟机的网络适配器模式为NAT模式</p><p><img src="/2018/12/20/liunx-xu-ni-net-mo-shi-wang-qia-pei-zhi/1.png" alt="NAT模式"></p><p>2.进入系统，修改网络配置文件</p><pre><code>vi /etc/sysconfig/network-scripts/ifcfg-eth0   进入配置文件</code></pre><p>3.删除其中的mac地址并修改ip获取方式BOOTPROTO为dhcp动态获取，是否允许ONBOOT修改为yes</p><p><img src="/2018/12/20/liunx-xu-ni-net-mo-shi-wang-qia-pei-zhi/2.png" alt="NAT模式"></p><p>4.删除网卡配置信息 </p><pre><code>rm -rf /etc/udev/rules.d/70-persistent-net.rules</code></pre><p>5.重启虚拟机</p><pre><code>reboot</code></pre><p>6.查看当前虚拟机ip地址</p><pre><code>ifconfig</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> liunx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 虚拟机 </tag>
+            
+            <tag> liunx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>idea中tomcat运行中文乱码</title>
+      <link href="/2018/12/18/idea-zhong-tomcat-yun-xing-zhong-wen-luan-ma/"/>
+      <url>/2018/12/18/idea-zhong-tomcat-yun-xing-zhong-wen-luan-ma/</url>
+      
+        <content type="html"><![CDATA[<p>1.进入tomcat配置Run/Debug Configurations中，在VM options中填入-Dfile.encoding=UTF-8</p><p><img src="/2018/12/18/idea-zhong-tomcat-yun-xing-zhong-wen-luan-ma/1.png" alt="配置图一"></p><p>2.大部分情况配置一即可解决，如乱码问题未解决请继续配置二。进入tomcat配置Run/Debug Configurations中，进入Startup/Connection配置面板中，勾选Pass environment variables选项，并添加一个environment variables，Name填写JAVA_OPTINS,Value填-Dfile.encoding=UTF-8</p><p><img src="/2018/12/18/idea-zhong-tomcat-yun-xing-zhong-wen-luan-ma/2.jpg" alt="配置图二"></p><p>3.在idea2019中，需配置HELP-&gt;Edit Custom VM OPtions文件,在其中加上-Dfile.encoding=utf-8</p><p><img src="/2018/12/18/idea-zhong-tomcat-yun-xing-zhong-wen-luan-ma/3.png" alt="配置图三"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> idea </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> idea </tag>
+            
+            <tag> tomcat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
+</search>
