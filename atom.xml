@@ -75,9 +75,9 @@
       <category term="cas" scheme="http://ltcj.github.io/categories/cas/"/>
     
     
-      <category term="单点登录" scheme="http://ltcj.github.io/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
-    
       <category term="cas" scheme="http://ltcj.github.io/tags/cas/"/>
+    
+      <category term="单点登录" scheme="http://ltcj.github.io/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"/>
     
   </entry>
   
@@ -207,6 +207,37 @@ import
   </entry>
   
   <entry>
+    <title>mysql高版本groupby问题</title>
+    <link href="http://ltcj.github.io/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/"/>
+    <id>http://ltcj.github.io/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/</id>
+    <published>2019-01-03T01:29:19.000Z</published>
+    <updated>2021-02-28T04:24:09.475Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在mysql高版本中查询非groupby聚合列会出异常，此时需要修改mysql的sql_mode&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;查询全局sql_mode&lt;/p&gt;
+&lt;p&gt; select
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://ltcj.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://ltcj.github.io/tags/mysql/"/>
+    
+      <category term="groupby" scheme="http://ltcj.github.io/tags/groupby/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mysql中groupconcat查询字段限制解决方案</title>
     <link href="http://ltcj.github.io/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/"/>
     <id>http://ltcj.github.io/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/</id>
@@ -235,37 +266,6 @@ import
       <category term="mysql" scheme="http://ltcj.github.io/tags/mysql/"/>
     
       <category term="group_concat" scheme="http://ltcj.github.io/tags/group-concat/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql高版本groupby问题</title>
-    <link href="http://ltcj.github.io/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/"/>
-    <id>http://ltcj.github.io/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/</id>
-    <published>2019-01-03T01:29:19.000Z</published>
-    <updated>2021-02-28T04:24:09.475Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;在mysql高版本中查询非groupby聚合列会出异常，此时需要修改mysql的sql_mode&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;查询全局sql_mode&lt;/p&gt;
-&lt;p&gt; select
-        
-      
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://ltcj.github.io/categories/mysql/"/>
-    
-    
-      <category term="mysql" scheme="http://ltcj.github.io/tags/mysql/"/>
-    
-      <category term="groupby" scheme="http://ltcj.github.io/tags/groupby/"/>
     
   </entry>
   

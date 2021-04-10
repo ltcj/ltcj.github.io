@@ -46,9 +46,9 @@
       
         <tags>
             
-            <tag> 单点登录 </tag>
-            
             <tag> cas </tag>
+            
+            <tag> 单点登录 </tag>
             
         </tags>
       
@@ -155,31 +155,6 @@
     </entry>
     
     <entry>
-      <title>mysql中groupconcat查询字段限制解决方案</title>
-      <link href="/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/"/>
-      <url>/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/</url>
-      
-        <content type="html"><![CDATA[<p>mysql中使用group_concat时如果查询字段过长会被限制查询结果长度</p><ol><li><p>会话窗口一次性方案</p><p> SET GLOBAL group_concat_max_len=1024000;  //需具有全局修改权限</p><p> SET SESSION group_concat_max_len=1024000;</p><p> 备注：不需重启mysql服务</p></li><li><p>彻底修改</p><p> 找到MYSQL的配置文件my.ini或者my.cnf,在里面添加以下信息</p><p> group_concat_max_len = -1  # -1为最大值或填入你要的最大长度或者自己设置group_concat_max_len = 1024000</p><p> 备注:需重启mysql服务</p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> mysql </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> mysql </tag>
-            
-            <tag> group_concat </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>mysql高版本groupby问题</title>
       <link href="/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/"/>
       <url>/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/</url>
@@ -199,6 +174,31 @@
             <tag> mysql </tag>
             
             <tag> groupby </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>mysql中groupconcat查询字段限制解决方案</title>
+      <link href="/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/"/>
+      <url>/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/</url>
+      
+        <content type="html"><![CDATA[<p>mysql中使用group_concat时如果查询字段过长会被限制查询结果长度</p><ol><li><p>会话窗口一次性方案</p><p> SET GLOBAL group_concat_max_len=1024000;  //需具有全局修改权限</p><p> SET SESSION group_concat_max_len=1024000;</p><p> 备注：不需重启mysql服务</p></li><li><p>彻底修改</p><p> 找到MYSQL的配置文件my.ini或者my.cnf,在里面添加以下信息</p><p> group_concat_max_len = -1  # -1为最大值或填入你要的最大长度或者自己设置group_concat_max_len = 1024000</p><p> 备注:需重启mysql服务</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> group_concat </tag>
             
         </tags>
       

@@ -602,22 +602,21 @@ m.replaceAll()  ---替换所有匹配
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/">
+                <a href="/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="mysql高版本groupby问题">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="mysql中groupconcat查询字段限制解决方案">
                         
-                        <span class="card-title">mysql高版本groupby问题</span>
+                        <span class="card-title">mysql中groupconcat查询字段限制解决方案</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">在mysql高版本中查询非groupby聚合列会出异常，此时需要修改mysql的sql_mode
+                    <div class="summary">mysql中使用group_concat时如果查询字段过长会被限制查询结果长度
 
-查询全局sql_mode
- select @@global.sql_mode;
-
-修改sql_mode为非only_full_group_b</div>
+会话窗口一次性方案
+ SET GLOBAL group_concat_max_len=1024000;  //需具有全局修改权限
+ SET SESSION g</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-03
@@ -641,8 +640,8 @@ m.replaceAll()  ---替换所有匹配
                         <span class="chip bg-color">mysql</span>
                     </a>
                     
-                    <a href="/tags/groupby/" target="_blank">
-                        <span class="chip bg-color">groupby</span>
+                    <a href="/tags/group-concat/" target="_blank">
+                        <span class="chip bg-color">group_concat</span>
                     </a>
                     
                 </div>
@@ -709,7 +708,7 @@ m.replaceAll()  ---替换所有匹配
 
 <footer class="page-footer bg-color">
     <div class="container row center-align">
-		<a href="https://beian.miit.gov.cn/" target="_blank">黔ICP备17006109号</a>
+		<a href="https://beian.miit.gov.cn/" target="_blank">黔ICP备17006109号-1</a>
     </div>
 </footer>
 
