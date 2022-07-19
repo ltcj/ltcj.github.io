@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>查漏补缺-单例模式</title>
+      <link href="/2022/07/18/cha-lou-bu-que-dan-li-mo-shi/"/>
+      <url>/2022/07/18/cha-lou-bu-que-dan-li-mo-shi/</url>
+      
+        <content type="html"><![CDATA[<p>1.单例模式：属于创建型模式，提供了一种创建对象的最佳方式</p><ul><li><p>单例类只能有一个实例</p></li><li><p>单例类必须自己创建自己的唯一实例</p></li><li><p>单例类必须给所有其他对象提供这一实例</p></li></ul><p>2.单例模式的实现方式</p><ul><li><p>饿汉式：没有加锁，执行效率会提高，但类加载时就初始化，浪费内存</p><pre><code>/** * 饿汉式 */class HungrySinger{    private static HungrySinger hungrySinger =  new HungrySinger();    private HungrySinger(){    }    public static HungrySinger getObject(){        return hungrySinger;    }}</code></pre></li><li><p>懒汉式（双检锁）：采用双重校验机制，安全且在多线程情况下保持高性能</p><pre><code>//双重检查class LazySingle{    //volatile防止实例在分配内存后未初始化时使用出现异常    private static volatile LazySingle lazySingle = null;    private LazySingle(){    }    public static LazySingle getObject(){            if (lazySingle==null){            synchronized (LazySingle.class){                if (lazySingle==null){                    lazySingle = new LazySingle();                    }            }           }    return lazySingle;    }}</code></pre></li><li><p>懒汉式（静态内部类）：实现简单，但不能防止反射和序列化破坏单例模式</p><pre><code>//静态内部类class LazySingle2{    private LazySingle2(){    }    private static class LazySingleFactory{        private static LazySingle2 lazySingle2 = new LazySingle2();    }    public static LazySingle2 getObject(){        return LazySingleFactory.lazySingle2;    }}</code></pre></li><li><p>懒汉式(枚举类)：实现单例模式的最佳方法，更简洁，自动支持序列化机制，防止多次实例化</p><pre><code>//枚举enum LazySingleThree{    OBJECT;        public LazySingleThree getObject(){            return OBJECT;    }}</code></pre></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 查漏补缺 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 面试指南 </tag>
+            
+            <tag> 设计模式 </tag>
+            
+            <tag> 查漏补缺 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Git+Hexo更新博客简单指令</title>
       <link href="/2021/03/01/git-hexo-geng-xin-bo-ke-jian-dan-zhi-ling/"/>
       <url>/2021/03/01/git-hexo-geng-xin-bo-ke-jian-dan-zhi-ling/</url>
@@ -155,31 +182,6 @@
     </entry>
     
     <entry>
-      <title>mysql高版本groupby问题</title>
-      <link href="/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/"/>
-      <url>/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/</url>
-      
-        <content type="html"><![CDATA[<p>在mysql高版本中查询非groupby聚合列会出异常，此时需要修改mysql的sql_mode</p><ol><li><p>查询全局sql_mode</p><p> select @@global.sql_mode;</p></li><li><p>修改sql_mode为非only_full_group_by模式(对当前会话、已存在数据库有效)</p><p> set sql_mode=(SELECT REPLACE(@@sql_mode,’ONLY_FULL_GROUP_BY’,’’));</p></li><li><p>修改全局sql_mode(对当前会话、新建数据库有效)</p><p> set @@global.sql_mode =’STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION’;</p><p> 注意：执行不成功可能由于复制时中英文单引号错乱导致</p></li><li><p>修改mysql的my.ini,添加以上配置(liunx为my.cnf,重启数据库后永久生效)</p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> mysql </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> mysql </tag>
-            
-            <tag> groupby </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>mysql中groupconcat查询字段限制解决方案</title>
       <link href="/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/"/>
       <url>/2019/01/03/mysql-zhong-groupconcat-cha-xun-zi-duan-xian-zhi-jie-jue-fang-an/</url>
@@ -199,6 +201,31 @@
             <tag> mysql </tag>
             
             <tag> group_concat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>mysql高版本groupby问题</title>
+      <link href="/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/"/>
+      <url>/2019/01/03/mysql-gao-ban-ben-groupby-wen-ti/</url>
+      
+        <content type="html"><![CDATA[<p>在mysql高版本中查询非groupby聚合列会出异常，此时需要修改mysql的sql_mode</p><ol><li><p>查询全局sql_mode</p><p> select @@global.sql_mode;</p></li><li><p>修改sql_mode为非only_full_group_by模式(对当前会话、已存在数据库有效)</p><p> set sql_mode=(SELECT REPLACE(@@sql_mode,’ONLY_FULL_GROUP_BY’,’’));</p></li><li><p>修改全局sql_mode(对当前会话、新建数据库有效)</p><p> set @@global.sql_mode =’STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION’;</p><p> 注意：执行不成功可能由于复制时中英文单引号错乱导致</p></li><li><p>修改mysql的my.ini,添加以上配置(liunx为my.cnf,重启数据库后永久生效)</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> groupby </tag>
             
         </tags>
       
