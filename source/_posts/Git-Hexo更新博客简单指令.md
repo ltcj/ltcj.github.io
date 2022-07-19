@@ -80,3 +80,4 @@ categories:
 * 创建一个新的页签文件夹，里面包含一个index.md
     
         hexo new page "页签名称"
+
